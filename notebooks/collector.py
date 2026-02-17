@@ -2,7 +2,7 @@ import json
 import pandas as pd
 import requests
 
-url = 'https://gnews.io/api/v4/search?q=None&lang=en&max=1category=world&apikey=fd4d32e10c5851bd7e17a424393877f3'
+url = 'https://gnews.io/api/v4/search?q=None&lang=en&max=1category=world&apikey='
 response = requests.get(url)
 dados = response.json()
 
