@@ -1,9 +1,23 @@
 import json
 import pandas as pd
 import requests
+from dotenv import load_dotenv
+import os
 
-url = 'https://gnews.io/api/v4/search?q=None&lang=en&max=1category=world&apikey='
-response = requests.get(url)
+load_dotenv()
+API_KEY = os.getenv("API_KEY")
+
+url = "https://gnews.io/api/v4/search"
+
+params = {
+    "q": "world",
+    "lang": "en",
+    "max": 1,
+    "apikey": API_KEY
+}
+
+response = requests.get(url, params=params)
+
 dados = response.json()
 
 noticias = []
