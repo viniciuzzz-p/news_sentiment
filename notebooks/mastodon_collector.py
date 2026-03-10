@@ -3,6 +3,7 @@ from mastodon import Mastodon
 import json
 from bs4 import BeautifulSoup
 import time
+import os
 
 caminho_arquivo = 'data/raw/mastodon.csv'
 
@@ -67,7 +68,13 @@ for topic in topics:
 
 print("Total coletado:", len(all_data))
 
-df = pd.DataFrame(all_data)
+if os.path.exists(caminho_arquivo):
+    df_novo = pd.DataFrame(all_data)
+    df_antigo = pd.read_csv(caminho_arquivo)
+
+    df = pd.concat([df_antigo, df_novo], ignore_index= True)
+else:
+    df = pd.DataFrame(all_data)
 
 
 df = df[df["text"].str.len() > 20]
